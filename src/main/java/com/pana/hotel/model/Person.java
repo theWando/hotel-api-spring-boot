@@ -4,8 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import java.time.Instant;
-import java.time.temporal.ChronoField;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Embeddable
@@ -52,8 +53,7 @@ public class Person {
     }
 
     public void setDateOfBirth(@NotNull Date dateOfBirth) {
-        Instant age = Instant.now().minusMillis(dateOfBirth.getTime());
-        this.age = age.get(ChronoField.YEAR);
+        this.age = Period.between(dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears();
         this.dateOfBirth = dateOfBirth;
     }
 
