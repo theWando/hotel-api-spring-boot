@@ -19,6 +19,12 @@ public class PersonTest {
 
     private Calendar dateOfBirth = new GregorianCalendar();
 
+    {
+        dateOfBirth.set(Calendar.YEAR, 1984);
+        dateOfBirth.set(Calendar.MONTH, Calendar.JUNE);
+        dateOfBirth.set(Calendar.DAY_OF_MONTH, 26);
+    }
+
     @Test
     public void when_date_is_before_the_day_of_birth() {
         final LocalDate someDate = LocalDate.of(2018, 2, 28);
@@ -26,10 +32,18 @@ public class PersonTest {
 
         when(LocalDate.now()).thenReturn(someDate);
         Person person = new Person();
-        dateOfBirth.set(Calendar.YEAR, 1984);
-        dateOfBirth.set(Calendar.MONTH, Calendar.JUNE);
-        dateOfBirth.set(Calendar.DAY_OF_MONTH, 26);
         person.setDateOfBirth(dateOfBirth.getTime());
         assertEquals(33, person.getAge());
+    }
+
+    @Test
+    public void when_day_and_month_are_pass_the_birth() {
+        final LocalDate someDate = LocalDate.of(2018, 7, 28);
+        mockStatic(LocalDate.class);
+
+        when(LocalDate.now()).thenReturn(someDate);
+        Person person = new Person();
+        person.setDateOfBirth(dateOfBirth.getTime());
+        assertEquals(34, person.getAge());
     }
 }
