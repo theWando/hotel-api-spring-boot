@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Null;
@@ -30,7 +31,9 @@ public class Room {
     /**
      * Plus features addables to a room, Satellite TV, Save, Extra beds... unicorns... anything you can imagine
      */
-    @ManyToMany(mappedBy = "room_features", cascade = CascadeType.PERSIST) private List<Feature> features;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "room_features")
+    private List<Feature> features;
 
     /**
      * Price to rent the room
