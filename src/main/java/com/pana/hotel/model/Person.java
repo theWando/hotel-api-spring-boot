@@ -2,15 +2,18 @@ package com.pana.hotel.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
 @Embeddable
-public class Person {
+@MappedSuperclass
+public class Person implements Serializable {
 
     @NotNull
     @Column
@@ -18,7 +21,7 @@ public class Person {
 
     @Column private String surname;
 
-    @Column private String lastname;
+    @Column private String lastName;
 
     @Column private Date dateOfBirth;
 
@@ -40,12 +43,12 @@ public class Person {
         this.surname = surname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getDateOfBirth() {
