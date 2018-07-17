@@ -2,6 +2,7 @@ package com.pana.hotel.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -9,7 +10,9 @@ import java.util.Objects;
 @Entity
 public class Feature {
 
-    @Id private int id;
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Column private String name;
 
@@ -17,12 +20,7 @@ public class Feature {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Feature{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", price=").append(price);
-        sb.append('}');
-        return sb.toString();
+        return "Feature{" + "id=" + id + ", name='" + name + '\'' + ", price=" + price + '}';
     }
 
     @Override

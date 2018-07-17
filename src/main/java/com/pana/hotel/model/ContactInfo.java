@@ -3,13 +3,16 @@ package com.pana.hotel.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class ContactInfo {
 
-    @Id private int id;
+    @Id
+    @GeneratedValue
+    private int id;
 
     @Enumerated private ContactInfoType type;
 
@@ -19,13 +22,7 @@ public class ContactInfo {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ContactInfo{");
-        sb.append("id=").append(id);
-        sb.append(", type=").append(type);
-        sb.append(", value='").append(value).append('\'');
-        sb.append(", emergencyContact=").append(emergencyContact);
-        sb.append('}');
-        return sb.toString();
+        return "ContactInfo{" + "id=" + id + ", type=" + type + ", value='" + value + '\'' + ", emergencyContact=" + emergencyContact + '}';
     }
 
     @Override

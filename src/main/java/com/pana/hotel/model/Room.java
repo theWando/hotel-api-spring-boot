@@ -9,8 +9,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Null;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Room {
@@ -33,7 +33,7 @@ public class Room {
      */
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "room_features")
-    private List<Feature> features;
+    private Set<Feature> features;
 
     /**
      * Price to rent the room
@@ -77,11 +77,11 @@ public class Room {
         this.name = name;
     }
 
-    public List<Feature> getFeatures() {
+    public Set<Feature> getFeatures() {
         return features;
     }
 
-    public void setFeatures(List<Feature> features) {
+    public void setFeatures(Set<Feature> features) {
         this.features = features;
     }
 
@@ -103,16 +103,8 @@ public class Room {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Room{");
-        sb.append("number=").append(number);
-        sb.append(", numberOfBeds=").append(numberOfBeds);
-        sb.append(", withAView=").append(withAView);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", features=").append(features);
-        sb.append(", price=").append(price);
-        sb.append(", total=").append(total);
-        sb.append('}');
-        return sb.toString();
+        return "Room{" + "number=" + number + ", numberOfBeds=" + numberOfBeds + ", withAView=" + withAView + ", name='" + name + '\'' + ", features=" + features + ", price=" + price + ", total="
+                + total + '}';
     }
 
     @Override
@@ -122,13 +114,12 @@ public class Room {
         if (o == null || getClass() != o.getClass())
             return false;
         Room room = (Room) o;
-        return number == room.number && numberOfBeds == room.numberOfBeds && withAView == room.withAView && Objects.equals(name, room.name) && Objects.equals(features, room.features) && Objects
-                .equals(price, room.price) && Objects.equals(total, room.total);
+        return number == room.number;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(number, numberOfBeds, withAView, name, features, price, total);
+        return Objects.hash(number);
     }
 }

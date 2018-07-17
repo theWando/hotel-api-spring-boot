@@ -5,7 +5,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -13,7 +12,7 @@ import java.util.Date;
 
 @Embeddable
 @MappedSuperclass
-public class Person implements Serializable {
+public class Person {
 
     @NotNull
     @Column
@@ -64,7 +63,4 @@ public class Person implements Serializable {
         return age;
     }
 
-    private void setAge(int age) {
-        this.age = age;
-    }
 }
