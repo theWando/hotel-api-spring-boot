@@ -1,0 +1,12 @@
+language: java
+cache:
+  directories:
+    - $HOME/.gradle
+services:
+  - postgresql
+before_script:
+  - psql -c "create database hotel_api;" -U postgres
+  - psql -c "create user hotel_user with password 'hotel-api-spring-boot';" -U postgres
+  - psql -c "grant all privileges on database hotel_api to hotel_user;" -U postgres
+after_success:
+- ./gradlew clean build jacocoTestReport jacocoTestCoverageVerification sonarqube -Dsonar.login=$SONARCLOUD_API_KEY
