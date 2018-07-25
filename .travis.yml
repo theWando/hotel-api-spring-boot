@@ -8,3 +8,5 @@ before_script:
   - psql -c "create database hotel_api;" -U postgres
   - psql -c "create user hotel_user with password 'hotel-api-spring-boot';" -U postgres
   - psql -c "grant all privileges on database hotel_api to hotel_user;" -U postgres
+after_success:
+  - ./gradlew sonarqube -Dsonar.login=f3b6ad05ae36d4826fe5e4b894802fe32cb0e81a
