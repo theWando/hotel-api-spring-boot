@@ -2,6 +2,6 @@ language: java
 services:
   - postgresql
 before_script:
-  - psql -c "create database 'hotel-api';" -U postgres
-  - psql -c "create user 'hotel-user' with password 'hotel-api-spring-boot';" -U postgres
-  - psql -c "grant all privileges on database 'hotel-api' to 'hotel-user';" -U postgres
+  - psql -c "create database hotel_api;" -U postgres
+  - psql -c "create user hotel_user with password 'hotel-api-spring-boot';" -U postgres
+  - psql -c "grant all privileges on database hotel_api to hotel_user;" -U postgres
