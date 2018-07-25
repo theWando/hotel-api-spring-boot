@@ -1,9 +1,4 @@
 language: java
-addons:
-  sonarcloud:
-    organization: "thewando-github"
-    token:
-      secure: "$SONARCLOUD_API_KEY"
 cache:
   directories:
     - $HOME/.gradle
@@ -14,4 +9,4 @@ before_script:
   - psql -c "create user hotel_user with password 'hotel-api-spring-boot';" -U postgres
   - psql -c "grant all privileges on database hotel_api to hotel_user;" -U postgres
 after_success:
-  - ./gradlew sonarqube -Dsonar.login=f3b6ad05ae36d4826fe5e4b894802fe32cb0e81a
+- ./gradlew clean build jacocoTestReport jacocoTestCoverageVerification sonarqube -Dsonar.login=$SONARCLOUD_API_KEY
