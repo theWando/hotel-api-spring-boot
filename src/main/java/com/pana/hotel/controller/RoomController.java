@@ -20,14 +20,24 @@ public class RoomController {
     @GetMapping(path = "/all")
     public ResponseEntity<Response> listAllRooms() {
         Set<Room> rooms = new HashSet<>();
-        final Room room = new Room();
+        Room room = new Room();
         room.setName("El conquistador");
         room.setNumber(1);
         room.setNumberOfBeds(1);
         room.setPrice(new BigDecimal(173));
         room.setWithAView(false);
-        rooms.add(room);
+        Room room2 = new Room();
+        room2.setNumber(2);
+        room2.setNumberOfBeds(1);
+        room2.setPrice(new BigDecimal(173));
+        room2.setWithAView(false);
+        rooms.add(room2);
         return buildOkStatusResponse(rooms);
+    }
+
+    @GetMapping(path = "/all/available")
+    public ResponseEntity<Response> listAllAvailableRooms() {
+        return null;
     }
 
 }
