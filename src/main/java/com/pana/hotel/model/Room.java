@@ -1,13 +1,7 @@
 package com.pana.hotel.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-import javax.validation.constraints.Null;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
@@ -15,7 +9,9 @@ import java.util.Set;
 @Entity
 public class Room {
 
-    @Id private int number;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int number;
 
     @Column private int numberOfBeds;
 
@@ -24,9 +20,9 @@ public class Room {
     /**
      * some rooms may have names, like "Presidential Suites"
      */
-    @Null
+    @NotNull
     @Column
-    private String name;
+    private String name = "";
 
     /**
      * Plus features addables to a room, Satellite TV, Save, Extra beds... unicorns... anything you can imagine
@@ -44,6 +40,23 @@ public class Room {
      * Price to rent the room with plus features
      */
     @Transient private BigDecimal total;
+
+    public Room() {
+    }
+
+    public Room(int numberOfBeds, BigDecimal price) {
+        this.numberOfBeds = numberOfBeds;
+        this.price = price;
+        this.total = price;
+    }
+
+    public Room(int numberOfBeds, boolean withAView, @NotNull String name, BigDecimal price, BigDecimal total) {
+        this.numberOfBeds = numberOfBeds;
+        this.withAView = withAView;
+        this.name = name;
+        this.price = price;
+        this.total = total;
+    }
 
     public int getNumber() {
         return number;
