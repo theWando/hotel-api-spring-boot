@@ -33,11 +33,7 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Employee{");
-        sb.append("id=").append(id);
-        sb.append(", position='").append(position).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "Employee{" + "id=" + id + ", position='" + position + '\'' + "} " + super.toString();
     }
 
     public int getId() {
